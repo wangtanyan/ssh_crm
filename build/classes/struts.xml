@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+		
+		<!-- 设置限定上传文件的大小 -->
+		<constant name="struts.multipart.maxSize" value="2097152"></constant>
+		<package name="user" extends="struts-default" namespace="/">
+			<action name="user_*" class="cn.wt.action.UserAction" method="{1}">
+				<result name="loginSuccess" type="dispatcher">/index.jsp</result>
+				<result name="loginFailure" type="redirect">/login.jsp</result>
+				<result name="editError" type="dispatcher">/edit.jsp</result>
+			</action>
+		</package>
+		
+		<package name="customer" extends="struts-default" namespace="/">
+			<action name="customer_*" class="cn.wt.action.CustomerAction" method="{1}">
+				 <result name="toAddAage" type="dispatcher">/jsp/customer/add.jsp</result>
+				 <result name="toUpdatePage" type="dispatcher">/jsp/customer/edit.jsp</result>
+				 <result name="updateSuccess" type="dispatcher">/jsp/customer/edit.jsp</result>
+				 <result name="deleteSuccess" type="dispatcher">/jsp/success.jsp</result>
+				 <result name="deleteError" type="dispatcher">/jsp/error.jsp</result>
+				 <result name="findList" type="dispatcher">/jsp/customer/list.jsp</result>
+				 <result name="toMoreCondition" type="dispatcher">/jsp/select/selectCustomer.jsp</result>
+				 <result name="listSource" type="dispatcher">/jsp/customer/listSource.jsp</result>
+				 <result name="listLevel" type="dispatcher">/jsp/customer/listLevel.jsp</result>
+			</action>
+		</package>
+		
+		<package name="linkMan" extends="struts-default" namespace="/">
+			<action name="linkMan_*" class="cn.wt.action.LinkManAction" method="{1}">
+				<result name="toAddPage" type="dispatcher">/jsp/linkman/add.jsp</result>
+				<result name="findPageListSuccess" type="dispatcher">/jsp/linkman/list.jsp</result>
+				<result name="Success" type="dispatcher">/jsp/success.jsp</result>
+				<result name="Error" type="dispatcher">/jsp/error.jsp</result>
+				<result name="toEditPage" type="dispatcher">/jsp/linkman/edit.jsp</result>
+				<result name="input" type="dispatcher">/jsp/error.jsp</result>
+				<result name="toSelLinkManPage" type="dispatcher">/jsp/select/selectLinkMan.jsp</result>
+			</action>
+		</package>
+		
+		<package name="visit" extends="struts-default" namespace="/">
+			<action name="visit_*" class="cn.wt.action.VisitAction" method="{1}">
+				<result name="toAddPage" type="dispatcher">/jsp/visit/add.jsp</result>
+				<result name="Error" type="dispatcher">/jsp/visit/add.jsp</result>
+				<result name="Success" type="redirect">/jsp/success.jsp</result>
+				<result name="input" type="redirect">/jsp/error.jsp</result>
+				<result name="visitList" type="dispatcher">/jsp/visit/list.jsp</result>
+				<result name="moreConPage" type="dispatcher">/jsp/select/selectVisit.jsp</result>
+				<result name="toEditPage" type="dispatcher">/jsp/visit/edit.jsp</result>
+			</action>
+		</package>
+	</struts>
+	

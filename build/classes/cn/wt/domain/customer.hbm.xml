@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<class name="cn.wt.domain.Customer" table="crm_customer">
+    		<id name="cid" column="cid">
+    			<generator class="native"></generator>
+    		</id>
+    		<property name="custName" column="custName"></property>
+    		<!-- <property name="custLevel" column="custLevel"></property> -->
+    		<property name="custSource" column="custSource"></property>
+    		<property name="custPhone" column="custPhone"></property>
+    		<property name="custMobile" column="custMobile"></property>
+    		<property name="custAddress" column="custAddress"></property>
+    		<property name="custZip" column="custZip"></property>
+    		<property name="custFax" column="custFax"></property>
+    		<property name="custWebsite" column="custWebsite"></property>
+    		
+    		<!-- 1.hibernate级联操作中是双向维护外键，设置inverse属性使一方放弃维护外键（一对多关系中使一的那一方放弃）
+    			 2.cascade设置级联操作（delete设置级联删除，save/update设置级联修改和保存） -->
+    		<set name="linkMans" inverse="true" cascade="delete">
+    			<key column="clid"></key>
+    			<one-to-many class="cn.wt.domain.LinkMan"/>
+    		</set>
+    		
+    		<!-- 关联用户访问 -->
+    		<set name="visits">
+    			<key column="vcid"></key>
+    			<one-to-many class="cn.wt.domain.Visit"/>
+    		</set>
+    		
+    		<!-- 关联客户级别的数据字典表 -->
+    		<many-to-one name="custLevel" column="custLevelDict" class="cn.wt.domain.Dict"></many-to-one>
+    	</class>
+    </hibernate-mapping>
